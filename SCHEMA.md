@@ -63,6 +63,7 @@ A bridge table for associating campaigns with interests (many-to-many), supporti
 ### `11_create_ad_events.sql`
 
 Tracks individual ad impressions and clicks with full normalization across users, campaigns, locations, devices, and slots. Omits redundant `advertiser_id` in favor of FK traversal via `campaign`.
+
 ---
 
 ### `12_create_indexes.sql`
