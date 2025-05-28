@@ -1,4 +1,4 @@
-# 📘 Schema Overview
+# Schema Overview
 
 ### `01_create_locations.sql`
 
