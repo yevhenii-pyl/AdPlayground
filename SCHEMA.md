@@ -69,3 +69,28 @@ Tracks individual ad impressions and clicks with full normalization across users
 ### `12_create_indexes.sql`
 
 Creates indexes on frequently joined and filtered columns to for query performance. Includes indexes on foreign keys, timestamps, and click flags across `users`, `campaigns`, `ad_events`, and bridge tables. Designed to support fast lookups, analytics, and join-heavy queries.
+
+---
+
+### `13_seed_genders.sql`
+
+Seeds the `genders` table with a predefined list of values (`Male`, `Female`). This ensures referential integrity for the `users` table and enforces a controlled vocabulary for gender.
+
+---
+
+### `14_seed_devices.sql`
+
+Populates the `devices` table with common device types (`Mobile`, `Desktop`, `Tablet`, etc.) used in ad events. Enables fast foreign key lookups and consistent device tracking.
+
+---
+
+### `15_seed_ad_slot_sizes.sql`
+
+Preloads the `ad_slot_sizes` table with standard IAB ad dimensions. This supports campaign targeting and ad event matching without relying on dynamic insertion.
+
+---
+
+### `16_create_seed_status.sql`
+
+Creates a utility table for tracking the execution of Python-based seed scripts.  
+Each script inserts a record into this table after successful execution, enabling idempotent data seeding and safe reruns during development. Used by the `run_seeders.py` orchestration logic.
