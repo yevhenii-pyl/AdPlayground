@@ -34,7 +34,8 @@ python scripts/run_seeders.py
 
 ### 5. Verify in MySQL
 
-
 ```bash
 mysql -u root -p -h {MYSQL_HOST} -P 3306 {MYSQL_DB}
 ```
+
+## RDBMS sreenshots are available at assets folder
