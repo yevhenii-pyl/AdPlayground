@@ -16,9 +16,8 @@ def extract_locations_from_users(csv_path: str) -> pd.DataFrame:
     return df
 
 if __name__ == "__main__":
-    path = "data/users.csv"  # Adjust if needed
+    path = "data/users.csv" 
     loc_df = extract_locations_from_users(path)
     
     print(f"✅ Extracted {len(loc_df)} unique locations")
     load_dataframe(loc_df, "locations")
-    print("🚀 Locations inserted into DB")

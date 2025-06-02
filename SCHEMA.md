@@ -54,9 +54,9 @@ Captures campaigns with references to advertisers and ad slot sizes. Designed to
 
 ---
 
-### `10_create_campaign_interests.sql`
+### `10_create_campaign_targets.sql`
 
-A bridge table for associating campaigns with interests (many-to-many), supporting advanced targeting logic and filtering.
+A bridge table for associating campaigns with its targets (many-to-many), supporting advanced targeting logic and filtering.
 
 ---
 
