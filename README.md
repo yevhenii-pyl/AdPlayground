@@ -1,5 +1,17 @@
 ## ⚙️ Setup Instructions
 
+## Full dockerised setup
+
+### 1. Download all assets into /data folder 
+
+### 2. Run 
+
+```bash
+docker compose up --build
+```
+
+## Local setup: run DB in docker + python venv locally 
+
 ### 1. Clone the repo and install dependencies
 
 ```bash
@@ -10,7 +22,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Set up .env
+### 2. Set up .env && download assets at /data folder
 
 ### 3. Start the MySQL database
 

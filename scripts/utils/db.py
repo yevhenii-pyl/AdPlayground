@@ -6,18 +6,16 @@ from sqlalchemy import create_engine, text
 
 load_dotenv()
 
-DB_CONFIG = {
-    "host": os.getenv("MYSQL_HOST"),
-    "port": int(os.getenv("MYSQL_PORT", "3306")),
-    "user": os.getenv("MYSQL_USER"),
-    "password": os.getenv("MYSQL_PASSWORD"),
-    "database": os.getenv("MYSQL_DB"),
-}
+user = os.getenv("MYSQL_USER")
+password = os.getenv("MYSQL_PASSWORD")
+host = os.getenv("MYSQL_HOST")
+port = os.getenv("MYSQL_PORT")
+db = os.getenv("MYSQL_DATABASE")
+
+DB_URL = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
 
 def get_engine():
-    return create_engine(
-        f"mysql+pymysql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
-    )
+    return create_engine(DB_URL)
 
 def load_dataframe(df, table_name: str):
     engine = get_engine()

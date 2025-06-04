@@ -1,10 +1,17 @@
 import pandas as pd
 import uuid
 from sqlalchemy import create_engine, text
+import os
 
-DB_URL = "mysql+pymysql://root:pass@localhost:3306/ad_db"
+user = os.getenv("MYSQL_USER")
+password = os.getenv("MYSQL_PASSWORD")
+host = os.getenv("MYSQL_HOST")
+port = os.getenv("MYSQL_PORT")
+db = os.getenv("MYSQL_DATABASE")
+
+DB_URL = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
+
 engine = create_engine(DB_URL)
-
 
 def load_campaign_map():
     with engine.connect() as conn:
