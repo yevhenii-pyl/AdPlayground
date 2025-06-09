@@ -6,11 +6,11 @@ from sqlalchemy import create_engine, text
 
 load_dotenv()
 
-user = os.getenv("MYSQL_USER")
-password = os.getenv("MYSQL_PASSWORD")
-host = os.getenv("MYSQL_HOST")
-port = os.getenv("MYSQL_PORT")
-db = os.getenv("MYSQL_DATABASE")
+user = os.getenv("MYSQL_USER", "root")
+password = os.getenv("MYSQL_PASSWORD", "pass")
+host = os.getenv("MYSQL_HOST", "localhost")
+port = int(os.getenv("MYSQL_PORT", 3306)) 
+db = os.getenv("MYSQL_DATABASE", "ad_db")
 
 DB_URL = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
 
@@ -20,7 +20,7 @@ def get_engine():
 def load_dataframe(df, table_name: str):
     engine = get_engine()
     df.to_sql(table_name, con=engine, if_exists="append", index=False)
-    print(f"✅ Inserted {len(df)} rows into '{table_name}'")
+    print(f"Inserted {len(df)} rows into '{table_name}'")
 
 def has_already_run(seed_name: str) -> bool:
     engine = get_engine()
