@@ -13,5 +13,5 @@ venv/
 .vscode/
 
 # CSV dumps or temp files
-*.csv
+/data/*.csv
 *.log

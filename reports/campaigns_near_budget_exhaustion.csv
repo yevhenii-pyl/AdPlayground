@@ -1,0 +1,11 @@
+campaign_id,campaign_name,advertiser_name,budget,total_spent,remaining_estimated_budget,budget_consumed_percent
+159,Campaign_159,Advertiser_17,10453.4,7773.05,2680.35,74.36
+901,Campaign_901,Advertiser_90,21668.0,8180.81,13487.17,37.76
+92,Campaign_92,Advertiser_10,24276.1,8998.55,15277.51,37.07
+779,Campaign_779,Advertiser_77,20320.3,6431.78,13888.51,31.65
+52,Campaign_52,Advertiser_6,13886.7,4243.17,9643.56,30.56
+357,Campaign_357,Advertiser_37,10492.8,2907.46,7585.33,27.71
+633,Campaign_633,Advertiser_64,23748.3,6275.19,17473.08,26.42
+302,Campaign_302,Advertiser_32,22589.2,5610.01,16979.15,24.83
+861,Campaign_861,Advertiser_86,31587.9,7669.78,23918.13,24.28
+554,Campaign_554,Advertiser_56,28585.1,6548.74,22036.35,22.91
