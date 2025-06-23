@@ -51,3 +51,13 @@ mysql -u root -p -h {MYSQL_HOST} -P 3306 {MYSQL_DB}
 ```
 
 ## RDBMS sreenshots are available at assets folder
+
+## Seed Cassandra
+```bash
+docker exec -it adplayground-app-1 sh -c "python scripts/cassandra_seeders/mysql_to_cassandra.py"
+```
+
+## Generate CSV Reports
+```bash
+docker exec -it adplayground-app-1 sh -c "python scripts/reporting/cassandra_report_runner.py"
+```
