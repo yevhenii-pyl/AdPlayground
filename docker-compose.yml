@@ -19,6 +19,16 @@ services:
       timeout: 10s
       retries: 10
 
+  mongo:
+    image: mongo:6.0
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ad_analytics
+
   app:
     build: .
     depends_on:
@@ -30,13 +40,43 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MONGO_URI: ${MONGO_URI}
+      CASSANDRA_HOST: ${CASSANDRA_HOST}
+      CASSANDRA_PORT: ${CASSANDRA_PORT}
+      CASSANDRA_KEYSPACE: ${CASSANDRA_KEYSPACE}
+      CASSANDRA_USER: ${CASSANDRA_USER}
+      CASSANDRA_PASSWORD: ${CASSANDRA_PASSWORD}
     volumes:
       - .:/app
     command: >
       sh -c "
         echo 'MySQL is healthy. Starting scripts...' &&
-        python scripts/utils/fix_events.py &&
+        if [ ! -f data/ad_events_fixed.csv ]; then
+          echo 'Fixed events not found. Running fix_events.py...' &&
+          python scripts/utils/fix_events.py;
+        else
+          echo 'Fixed events file already exists. Skipping fix_events.py.';
+        fi &&
         python scripts/run_seeders.py"
+
+  cassandra:
+    image: cassandra:4.1
+    container_name: cassandra
+    ports:
+      - "9042:9042"  # CQL port
+    environment:
+      - CASSANDRA_CLUSTER_NAME=AdCluster
+      - CASSANDRA_DC=datacenter1
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    healthcheck:
+        test: ["CMD-SHELL", "cqlsh -e 'describe keyspaces'"]
+        interval: 10s
+        timeout: 10s
+        retries: 10
 
 volumes:
   db_data:
+  mongo_data:
+  cassandra_data:
+
